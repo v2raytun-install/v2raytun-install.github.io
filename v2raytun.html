@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V2RayTun: Как легко создать свой VPN: Полное руководство</title>
+    <meta name="description" content="Простая пошаговая инструкция, как создать свой личный VPN для обхода блокировок и защиты данных. Настройка за 5 минут с V2RayTun и Marzban.">
+    <meta name="keywords" content="создать свой vpn, настроить vpn, личный vpn, vpn для обхода блокировок, v2raytun vpn, marzban vpn, купить vps для vpn">
+    <meta property="og:title" content="V2RayTun: Как легко и быстро создать свой VPN: Полное руководство">
+    <meta property="og:description" content="Простая пошаговая инструкция, как создать свой личный VPN для обхода блокировок и защиты данных.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0f172a/ffffff?text=Свой+VPN+за+5+минут">
+    <meta property="og:url" content="https://u1host.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="https://placehold.co/32x32/6366f1/ffffff?text=V" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Manrope", sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            background: var(--gradient);
+            color: white;
+        }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover { color: white; }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -0.25rem;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+        .content-section {
+            padding: 8rem 2rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        h1, h2, h3 {
+            background: linear-gradient(to right, white, #c7d2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        h1 { font-size: 2.8rem; font-weight: 800; text-align: center; }
+        h2 { font-size: 2.2rem; font-weight: 700; margin-top: 3.5rem; border-bottom: 1px solid var(--primary); padding-bottom: 0.5rem;}
+        h3 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; color: white; -webkit-background-clip: unset; background-clip: unset; background: none; }
+        p, li {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.75rem; }
+        a { color: var(--primary); text-decoration: none; transition: color 0.3s ease; font-weight: 600; }
+        a:hover { color: var(--accent); }
+        
+        .tagline {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .important-note {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+        }
+        .important-note p { margin-bottom: 0; }
+        img.screenshot {
+            width: 100%;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .app-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        .app-card img { width: 64px; height: 64px; margin: 0 auto 1rem; }
+        .app-card h3 { font-size: 1.2rem; margin-top: 0; }
+        .app-card p { font-size: 0.9rem; margin-bottom: 1rem; }
+        .app-card a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            margin-top: auto;
+        }
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+        .footer-text { color: rgba(255, 255, 255, 0.6); font-size: 1rem; }
+        .footer-text a { font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+            </div>
+            <span>V2RayTun</span>
+        </a>
+        <nav class="nav-links">
+             <a href="#apps" class="nav-link">Приложения</a>
+             <a href="#setup" class="nav-link">Инструкция</a>
+        </nav>
+        <a href="https://u1host.com/cart.php?gid=1" target="_blank" class="cta-button">Создать свой VPN</a>
+    </header>
+
+    <main class="content-section">
+        <h1>V2RayTun: Создайте свой безопасный и быстрый VPN</h1>
+        <p class="tagline">Secure. Fast. Unstoppable.</p>
+        <p>Забудьте о медленных и ненадежных публичных VPN. Создайте свой личный, скоростной и безопасный VPN-сервер всего за 5 минут. Это проще, чем кажется! Это руководство покажет вам каждый шаг.</p>
+        
+        <h2>Зачем вам нужен собственный VPN?</h2>
+        <ul>
+            <li><strong>Полная конфиденциальность.</strong> Никто, кроме вас, не будет иметь доступа к вашим данным.</li>
+            <li><strong>Высокая скорость.</strong> Ваш канал не будет перегружен тысячами других пользователей.</li>
+            <li><strong>Обход любых блокировок.</strong> Доступ к любым сайтам и сервисам из любой точки мира.</li>
+            <li><strong>Стабильность.</strong> Ваш личный VPN никто не заблокирует и не отключит.</li>
+        </ul>
+
+        <h2 id="setup">Инструкция: 4 простых шага к своему VPN</h2>
+        <p>Мы будем использовать современные технологии V2RayTun и панель Marzban. Не пугайтесь названий — все уже настроено за вас.</p>
+        
+        <h3>Шаг 1: Арендуйте "дом" для вашего VPN</h3>
+        <p>Вашему VPN нужен сервер — это как личный мини-компьютер в другой стране. Мы рекомендуем хостинг <a href="https://u1host.com" target="_blank">U1HOST</a>, потому что они сделают всю сложную работу за вас.</p>
+        <p>Перейдите на сайт <a href="https://u1host.com" target="_blank">u1host.com</a>, нажмите "Заказать услугу" и выберите любой базовый тариф (например, DE-Promo).</p>
+        <img src="https://placehold.co/800x450/1e293b/ffffff?text=1.+Выбор+тарифа+на+U1HOST" alt="Выбор тарифа VPS" class="screenshot">
+
+        <div class="important-note">
+            <p><strong>Важно:</strong> При заказе в разделе "Предустановленное ПО" просто выберите <strong>Marzban</strong> из списка. Это ключ к простой настройке!</p>
+        </div>
+        <img src="https://placehold.co/800x450/1e293b/ffffff?text=2.+Выбор+ПО:+Marzban" alt="Настройка конфигурации сервера с Marzban" class="screenshot">
+        <p>Завершите заказ и оплатите его. Через 3-4 минуты ваш сервер с VPN-панелью будет готов.</p>
+
+        <h3>Шаг 2: Получите ключи от вашего VPN</h3>
+        <p>После оплаты хостинг пришлет вам инструкцию со всеми данными: IP-адрес, логин, пароль и ссылку для входа в панель управления Marzban.</p>
+        <img src="https://placehold.co/800x450/1e293b/ffffff?text=3.+Получение+данных+доступа" alt="Инструкция для доступа к Marzban" class="screenshot">
+        
+        <h3>Шаг 3: Создайте ключ подключения</h3>
+        <p>Войдите в панель Marzban по ссылке из инструкции. Там все просто:</p>
+        <ol>
+            <li>Найдите раздел <strong>Users</strong> (Пользователи).</li>
+            <li>Нажмите <strong>Create new user</strong> (Создать пользователя).</li>
+            <li>Дайте имя пользователю (например, "MyPhone") и нажмите <strong>Save</strong> (Сохранить).</li>
+        </ol>
+        <p>Панель мгновенно создаст уникальный ключ для подключения. Вы увидите его в виде QR-кода и ссылки.</p>
+        <img src="https://placehold.co/800x450/1e293b/ffffff?text=4.+Копирование+ключа+или+QR-кода" alt="Создание пользователя в панели Marzban" class="screenshot">
+        
+        <h3 id="apps">Шаг 4: Подключитесь с любого устройства</h3>
+        <p>Теперь установите одно из этих бесплатных приложений на свой телефон или компьютер, чтобы использовать созданный ключ.</p>
+        <div class="app-grid">
+            <div class="app-card">
+                <img src="https://placehold.co/64x64/6366f1/ffffff?text=V" alt="V2rayTun Logo">
+                <h3>V2rayTun</h3>
+                <p>Windows, MacOS, Linux</p>
+                <a href="https://v2raytun-install.ru/" target="_blank">Скачать</a>
+            </div>
+            <div class="app-card">
+                <img src="https://placehold.co/64x64/6366f1/ffffff?text=Hi" alt="Hiddify Logo">
+                <h3>Hiddify</h3>
+                <p>Android, iOS, Windows, MacOS</p>
+                <a href="https://hiddify.com/" target="_blank">Скачать</a>
+            </div>
+            <div class="app-card">
+                <img src="https://placehold.co/64x64/6366f1/ffffff?text=S" alt="Streisand Logo">
+                <h3>Streisand</h3>
+                <p>iOS, MacOS</p>
+                <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank">Скачать</a>
+            </div>
+             <div class="app-card">
+                <img src="https://placehold.co/64x64/6366f1/ffffff?text=VB" alt="V2Box Logo">
+                <h3>V2Box</h3>
+                <p>iOS, MacOS</p>
+                <a href="https://www.v2box.com/" target="_blank">Скачать</a>
+            </div>
+        </div>
+        <p style="margin-top: 2rem;">Откройте приложение, нажмите "+" или "Импорт", вставьте скопированную ссылку или отсканируйте QR-код. Нажмите "Подключиться".</p>
+        <p><strong>Поздравляем, вы в интернете через свой личный VPN!</strong></p>
+    </main>
+
+    <footer>
+        <p class="footer-text">
+            Руководство по установке V2RayTun. Рекомендованный хостинг — <a href="https://u1host.com" target="_blank">U1HOST</a>.
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#6366f1" },
+                shape: { type: "circle" },
+                opacity: { value: 0.2, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#6366f1", opacity: 0.15, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" },
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.3 } },
+                    push: { particles_nb: 4 },
+                },
+            },
+            retina_detect: true,
+        });
+    </script>
+</body>
+</html>
